@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wi-Fi FGTECH</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #001f3f, #004080);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      margin-bottom: 15px;
+      font-size: 26px;
+      color: #ffffff;
+    }
+    p {
+      font-size: 15px;
+      color: #e0e0e0;
+      margin-bottom: 25px;
+    }
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+    }
+    label {
+      font-size: 14px;
+      color: #ddd;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .success {
+      display: none;
+      font-size: 18px;
+      color: #00ff9d;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Wi-Fi FGTECH</h1>
+    <p>Conecte-se à internet de forma rápida e segura.<br>Preencha seus dados para liberar o acesso.</p>
+    
+    <form id="leadForm" action="https://script.google.com/macros/s/AKfycbwO1kt0w84fmHNRlrV_gv5oMlIJlhIfnwLNr4A04fx3XvJlCi6hNUIUVFx2x9DddUdV2g/exec" method="POST">
+      <input type="text" name="nome" placeholder="Seu nome" required />
+      <input type="tel" name="telefone" placeholder="Seu telefone" required />
+      <div style="text-align: left; margin-bottom: 15px;">
+        <label>
+          <input type="checkbox" required />
+          Li e aceito os <a href="#" style="color: #00aaff;">termos de uso</a>.
+        </label>
+      </div>
+      <button type="submit">Conectar</button>
+    </form>
+    
+    <div class="success" id="successMsg">
+      ✅ Acesso liberado! Aproveite sua conexão.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("leadForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch(form.action, { method: "POST", body: data });
+        form.style.display = "none";
+        successMsg.style.display = "block";
+        setTimeout(() => window.location.href = "http://neverssl.com", 3000);
+      } catch {
+        alert("Ocorreu um erro. Tente novamente.");
+      }
+    });
+  </script>
+</body>
+</html>
